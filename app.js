@@ -1,4 +1,10 @@
 var MyComponent = React.createClass({
+  getInitialState: function() {
+    return {
+      isOpen: true
+    };
+  },
+
   render: function() {
     var open = React.createElement('div', null, [
           React.createElement(
@@ -30,7 +36,10 @@ var MyComponent = React.createClass({
           )
         );
 
-    return open;
+    if (this.state.isOpen)
+      return open;
+    else
+      return closed;
   }
 });
 
