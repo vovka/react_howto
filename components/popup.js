@@ -12,41 +12,38 @@ var Popup = React.createClass({
   },
 
   render: function() {
-    var open = React.createElement('div', null, [
-          React.createElement(
-            'div',
-            {
-              key: 'content',
-              className: 'content'
-            },
-            'Hello world'
-          ),
-          React.createElement(
-            'div',
-            {
-              key: 'closeButton',
-              className: 'closeButton',
-              onClick: this.toggle
-            },
-            'Close'
-          )
-        ]),
+    var buttonClass = 'closeButton',
+        buttonText = 'Open',
+        content = null;
 
-        closed = React.createElement('div', null,
-          React.createElement(
-            'div',
-            {
-              key: 'openButton',
-              className: 'openButton',
-              onClick: this.toggle
-            },
-            'Open'
-          )
-        );
+    if (this.state.isOpen) {
+      buttonClass = 'openButton';
+      buttonText = 'Close';
+      content = (
+        React.createElement(
+          'div',
+          {
+            key: 'content',
+            className: 'content'
+          },
+          'Hello world'
+        )
+      );
+    }
 
-    if (this.state.isOpen)
-      return open;
-    else
-      return closed;
+    return (
+      React.createElement('div', null, [
+        content,
+        React.createElement(
+          'div',
+          {
+            key: 'button',
+            className: buttonClass,
+            onClick: this.toggle
+          },
+          buttonText
+        )
+      ])
+    );
   }
 });
