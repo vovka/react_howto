@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+}
+
+.popup {
+  float: left;
+  position: absolute;
+  top: 30%;
+}
+
+.popup .content {
+  width: 100px;
+  height: 200px;
+  float: left;
+  background: #cccccc;
+  padding: 10px;
+}
+
+.popup .closeButton {
+  float: left;
+  background: #aaaaaa;
+  padding: 10px;
+  margin-left: -9px;
+  margin-top: 9px;
+  transform: rotate(90deg);
+}
+
+.popup .openButton {
+  float: left;
+  background: #aaaaaa;
+  padding: 10px;
+  margin-left: -9px;
+  margin-top: 9px;
+  transform: rotate(90deg);
+}
