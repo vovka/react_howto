@@ -6,7 +6,9 @@ var Popup = React.createClass({
   },
 
   toggle: function() {
-    alert('ok');
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
   },
 
   render: function() {
