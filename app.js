@@ -1,7 +1,7 @@
 var MyComponent = React.createClass({
   getInitialState: function() {
     return {
-      isOpen: true
+      isOpen: this.props.show
     };
   },
 
@@ -46,6 +46,6 @@ var MyComponent = React.createClass({
 
 
 ReactDOM.render(
-  React.createElement(MyComponent),
+  React.createElement(MyComponent, {show: false}),
   document.getElementById('popup')
 );
