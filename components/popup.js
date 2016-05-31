@@ -5,6 +5,10 @@ var Popup = React.createClass({
     };
   },
 
+  toggle: function() {
+    alert('ok');
+  },
+
   render: function() {
     var open = React.createElement('div', null, [
           React.createElement(
@@ -19,7 +23,8 @@ var Popup = React.createClass({
             'div',
             {
               key: 'closeButton',
-              className: 'closeButton'
+              className: 'closeButton',
+              onClick: this.toggle
             },
             'Close'
           )
@@ -30,7 +35,8 @@ var Popup = React.createClass({
             'div',
             {
               key: 'openButton',
-              className: 'openButton'
+              className: 'openButton',
+              onClick: this.toggle
             },
             'Open'
           )
