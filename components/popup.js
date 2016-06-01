@@ -20,30 +20,17 @@ var Popup = React.createClass({
       buttonClass = 'openButton';
       buttonText = 'Close';
       content = (
-        React.createElement(
-          'div',
-          {
-            key: 'content',
-            className: 'content'
-          },
-          'Hello world'
-        )
+        <div key='content' className='content'>Hello world</div>
       );
     }
 
     return (
-      React.createElement('div', null, [
-        content,
-        React.createElement(
-          'div',
-          {
-            key: 'button',
-            className: buttonClass,
-            onClick: this.toggle
-          },
-          buttonText
-        )
-      ])
+      <div>
+        {content}
+        <div key='button' className={buttonClass} onClick={this.toggle}>
+          {buttonText}
+        </div>
+      </div>
     );
   }
 });
