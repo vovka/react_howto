@@ -1,17 +1,18 @@
-var Popup = React.createClass({
-  getInitialState: function() {
-    return {
-      isOpen: this.props.show
+class Popup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: props.show
     };
-  },
+  }
 
-  toggle: function() {
+  toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     })
-  },
+  }
 
-  render: function() {
+  render() {
     var buttonClass = 'closeButton',
         buttonText = 'Open',
         content = null;
@@ -27,12 +28,12 @@ var Popup = React.createClass({
     return (
       <div>
         {content}
-        <div key='button' className={buttonClass} onClick={this.toggle}>
+        <div key='button' className={buttonClass} onClick={this.toggle.bind(this)}>
           {buttonText}
         </div>
       </div>
     );
   }
-});
+}
 
 export default Popup;
