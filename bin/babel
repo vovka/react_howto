@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-./node_modules/.bin/babel app.jsx --out-file app.js
+./node_modules/.bin/browserify app.jsx -t babelify --outfile app.js

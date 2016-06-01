@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "dependencies": {
     "babel-cli": "latest",
+    "browserify": "latest",
+    "babelify": "latest",
     "babel-preset-es2015": "latest",
     "babel-preset-react": "latest"
   },

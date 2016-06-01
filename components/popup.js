@@ -47,3 +47,5 @@ var Popup = React.createClass({
     );
   }
 });
+
+export default Popup;
