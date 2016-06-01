@@ -1,4 +1,6 @@
-class Popup extends React.Component {
+import React from 'react';
+
+export default class Popup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,5 +37,3 @@ class Popup extends React.Component {
     );
   }
 }
-
-export default Popup;

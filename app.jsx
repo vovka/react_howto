@@ -1,6 +1,8 @@
-import Popup from './components/popup';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Popup from './components/popup.jsx';
 
-var target = document.getElementById('popup');
+let target = document.getElementById('popup');
 
 ReactDOM.render(
   <Popup show={!!target.dataset.show} />,
