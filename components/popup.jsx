@@ -1,39 +1,50 @@
-import React from 'react';
+import _ from 'underscore';
+import Backbone from 'backbone';
 
-export default class Popup extends React.Component {
+export class PopupModel extends Backbone.Model {}
+
+export class Popup extends Backbone.View {
   constructor(props) {
     super(props);
-    this.state = {
+    this.listenTo(this.model, "change", this.render);
+    this.model.set({
       isOpen: props.show
-    };
+    });
+  }
+
+  get events() {
+    return { "click .button": "toggle" };
   }
 
   toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
+    this.model.set({
+      isOpen: !this.model.get('isOpen')
+    });
   }
 
   render() {
     var buttonClass = 'closeButton',
-        buttonText = 'Open',
-        content = null;
+        buttonText = 'Open';
 
-    if (this.state.isOpen) {
+    if (this.model.get('isOpen')) {
       buttonClass = 'openButton';
       buttonText = 'Close';
-      content = (
-        <div key='content' className='content'>Hello world</div>
-      );
     }
 
-    return (
+    var attributes = this.model.attributes;
+    attributes.buttonClass = buttonClass;
+    attributes.buttonText = buttonText;
+
+    this.el.innerHTML = _.template(`
       <div>
-        {content}
-        <div key='button' className={buttonClass} onClick={this.toggle.bind(this)}>
-          {buttonText}
+        <% if (isOpen) { %>
+          <div key='content' class='content'>Hello world</div>
+        <% } %>
+        <div key='button' class='<%= buttonClass %> button'>
+          <%= buttonText %>
         </div>
       </div>
-    );
+    `)(attributes);
+    return this;
   }
 }

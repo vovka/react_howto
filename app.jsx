@@ -1,10 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Popup from './components/popup.jsx';
+import { PopupModel, Popup } from './components/popup.jsx';
 
 let target = document.getElementById('popup');
 
-ReactDOM.render(
-  <Popup show={!!target.dataset.show} />,
-  target
-);
+new Popup({
+  show: !!target.dataset.show,
+  el: target,
+  model: new PopupModel
+});
