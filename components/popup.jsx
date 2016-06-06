@@ -1,5 +1,21 @@
 import $ from 'jquery';
 
+let getNextState = (currentState) => {
+  if (currentState.isOpen) {
+    return {
+      action: 'hide',
+      buttonText: 'Open',
+      isOpen: false
+    }
+  } else {
+    return {
+      action: 'show',
+      buttonText: 'Close',
+      isOpen: true
+    }
+  }
+}
+
 export class Popup {
   constructor(props) {
     this.showByDefault = props.show;
@@ -17,15 +33,14 @@ export class Popup {
   }
 
   _toggle() {
-    this.$button.toggleClass('closeButton');
-    this.$button.toggleClass('openButton');
-    if (this.isOpen) {
-      this.$content.hide();
-      this.$button.html('Open');
-    } else {
-      this.$content.show();
-      this.$button.html('Close');
-    }
-    this.isOpen = !this.isOpen;
+    let nextState = getNextState({ isOpen: this.isOpen });
+    this.isOpen = nextState.isOpen;
+    this._render(nextState);
+  }
+
+  _render(state) {
+    this.$button.toggleClass('closeButton openButton');
+    this.$button.html(state.buttonText);
+    this.$content[state.action]();
   }
 }
