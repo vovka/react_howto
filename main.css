@@ -33,3 +33,7 @@ body {
   margin-top: 9px;
   transform: rotate(90deg);
 }
+
+.popup .hidden {
+  display: none;
+}
