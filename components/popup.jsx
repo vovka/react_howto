@@ -1,50 +1,31 @@
-import _ from 'underscore';
-import Backbone from 'backbone';
+import $ from 'jquery';
 
-export class PopupModel extends Backbone.Model {}
-
-export class Popup extends Backbone.View {
+export class Popup {
   constructor(props) {
-    super(props);
-    this.listenTo(this.model, "change", this.render);
-    this.model.set({
-      isOpen: props.show
-    });
+    this.showByDefault = props.show;
+    this.$el = $(props.el);
+    this.$button = this.$el.find('.button');
+    this.$content = this.$el.find('.content');
+    this.isOpen = true;
   }
 
-  get events() {
-    return { "click .button": "toggle" };
-  }
-
-  toggle() {
-    this.model.set({
-      isOpen: !this.model.get('isOpen')
-    });
-  }
-
-  render() {
-    var buttonClass = 'closeButton',
-        buttonText = 'Open';
-
-    if (this.model.get('isOpen')) {
-      buttonClass = 'openButton';
-      buttonText = 'Close';
+  bind() {
+    this.$button.on('click', this._toggle.bind(this));
+    if (this.showByDefault) {
+      this._toggle();
     }
+  }
 
-    var attributes = this.model.attributes;
-    attributes.buttonClass = buttonClass;
-    attributes.buttonText = buttonText;
-
-    this.el.innerHTML = _.template(`
-      <div>
-        <% if (isOpen) { %>
-          <div key='content' class='content'>Hello world</div>
-        <% } %>
-        <div key='button' class='<%= buttonClass %> button'>
-          <%= buttonText %>
-        </div>
-      </div>
-    `)(attributes);
-    return this;
+  _toggle() {
+    this.$button.toggleClass('closeButton');
+    this.$button.toggleClass('openButton');
+    if (this.isOpen) {
+      this.$content.hide();
+      this.$button.html('Open');
+    } else {
+      this.$content.show();
+      this.$button.html('Close');
+    }
+    this.isOpen = !this.isOpen;
   }
 }
